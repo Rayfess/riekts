@@ -14,13 +14,18 @@ function App() {
     (lett) => !wordToGuess.includes(lett),
   );
 
+  const isLoser = incorrLetts.length >= 6;
+  const isWinner = wordToGuess
+    .split("")
+    .every((lett) => guessedLetts.includes(lett));
+
   const addGuessedLett = useCallback(
     (lett: string) => {
-      if (guessedLetts.includes(lett)) return;
+      if (guessedLetts.includes(lett) || isLoser || isWinner) return;
 
       setguessedLetts((currentLett) => [...currentLett, lett]);
     },
-    [guessedLetts],
+    [guessedLetts, isLoser, isWinner],
   );
 
   console.log(wordToGuess);
@@ -52,11 +57,19 @@ function App() {
         alignItems: "center",
       }}
     >
-      <div style={{ fontSize: "2rem", textAlign: "center" }}>Lose Win</div>
+      <div style={{ fontSize: "2rem", textAlign: "center" }}>
+        {isWinner && "You Win - Refresh to Try Again"}
+        {isLoser && "Nice Try - Refresh to Try Again"}
+      </div>
       <HangmanDrawing numOfGuesses={incorrLetts.length} />
       <HangmanWord guessedLetts={guessedLetts} wordToGuess={wordToGuess} />
       <div style={{ alignSelf: "stretch" }}>
-        <Keyboard />
+        <Keyboard
+          disabled={isWinner || isLoser}
+          activeLett={guessedLetts.filter((lett) => wordToGuess.includes(lett))}
+          inactiveLett={incorrLetts}
+          addGuessedLett={addGuessedLett}
+        />
       </div>
     </div>
   );
