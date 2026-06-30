@@ -20,19 +20,21 @@ export const HangmanWord = ({
         fontFamily: "monospace",
       }}
     >
-      {wordToGuess.split("").map((lett, i) => (
-        <span style={{ borderBottom: ".1em solid black" }} key={i}>
-          <span
-            style={{
-              visibility:
-                guessedLetts.includes(lett) || reveal ? "visible" : "hidden",
-              color: !guessedLetts.includes(lett) && reveal ? "red" : "black",
-            }}
-          >
-            {lett}
+      {wordToGuess.split("").map((lett, i) => {
+        const isGuessed = guessedLetts.includes(lett);
+        return (
+          <span style={{ borderBottom: ".1em solid black" }} key={i}>
+            <span
+              style={{
+                visibility: isGuessed || reveal ? "visible" : "hidden",
+                color: !isGuessed && reveal ? "red" : "black",
+              }}
+            >
+              {lett}
+            </span>
           </span>
-        </span>
-      ))}
+        );
+      })}
     </div>
   );
 };
