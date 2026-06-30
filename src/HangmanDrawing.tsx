@@ -1,5 +1,6 @@
 const HEAD = (
   <div
+    key="head"
     style={{
       width: "50px",
       height: "50px",
@@ -14,6 +15,7 @@ const HEAD = (
 
 const BODY = (
   <div
+    key="body"
     style={{
       width: "10px",
       height: "100px",
@@ -27,6 +29,7 @@ const BODY = (
 
 const RARM = (
   <div
+    key="rArm"
     style={{
       width: "100px",
       height: "10px",
@@ -42,6 +45,7 @@ const RARM = (
 
 const LARM = (
   <div
+    key="lArm"
     style={{
       width: "100px",
       height: "10px",
@@ -57,6 +61,7 @@ const LARM = (
 
 const RLEG = (
   <div
+    key="rLeg"
     style={{
       width: "100px",
       height: "10px",
@@ -72,6 +77,7 @@ const RLEG = (
 
 const LLEG = (
   <div
+    key="lLeg"
     style={{
       width: "100px",
       height: "10px",
@@ -88,6 +94,7 @@ const LLEG = (
 const HANGER = (
   <>
     <div
+      key="hanger"
       style={{
         height: "50px",
         width: "10px",
