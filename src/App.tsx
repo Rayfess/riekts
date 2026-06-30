@@ -32,17 +32,17 @@ function App() {
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      const key = e.key;
+      const key = e.key.toLowerCase();
       if (!key.match(/^[a-z]$/)) return;
 
       e.preventDefault();
       addGuessedLett(key);
     };
 
-    document.addEventListener("keypress", handler);
+    document.addEventListener("keydown", handler);
 
     return () => {
-      document.removeEventListener("keypress", handler);
+      document.removeEventListener("keydown", handler);
     };
   }, [guessedLetts]);
 
@@ -54,9 +54,9 @@ function App() {
       setguessedLetts([]);
     };
 
-    document.addEventListener("keypress", handler);
+    document.addEventListener("keydown", handler);
 
-    return () => document.removeEventListener("keypress", handler);
+    return () => document.removeEventListener("keydown", handler);
   }, []);
 
   return (
